@@ -1,6 +1,10 @@
 /*
  * jQuery Plugin: Tokenizing Autocomplete Text Entry
- * Version 1.6.2
+ * Version 1.7.0
+ *
+ * Copyright (c) 2018 Laércio Andrade Guimarães
+ * Licensed jointly under the GPL and MIT licenses,
+ * choose which one suits your project best!
  *
  * Copyright (c) 2009 James Smith (http://loopj.com)
  * Licensed jointly under the GPL and MIT licenses,
@@ -148,16 +152,13 @@
           });
       },
       clear: function() {
-          this.data("tokenInputObject").clear();
-          return this;
+          return this.data("tokenInputObject").clear();
       },
       add: function(item) {
-          this.data("tokenInputObject").add(item);
-          return this;
+          return this.data("tokenInputObject").add(item);
       },
       remove: function(item) {
-          this.data("tokenInputObject").remove(item);
-          return this;
+          return this.data("tokenInputObject").remove(item);
       },
       get: function() {
           return this.data("tokenInputObject").getTokens();
@@ -497,13 +498,13 @@
       this.clear = function() {
           token_list.children("li").each(function() {
               if ($(this).children("input").length === 0) {
-                  delete_token($(this));
+                  return delete_token($(this));
               }
           });
       };
 
       this.add = function(item) {
-          add_token(item);
+          return add_token(item);
       };
 
       this.remove = function(item) {
@@ -518,7 +519,7 @@
                       }
                   }
                   if (match) {
-                      delete_token($(this));
+                      return delete_token($(this));
                   }
               }
           });
@@ -685,7 +686,7 @@
 
           // Execute the onAdd callback if defined
           if($.isFunction(callback)) {
-              callback.call(hiddenInput,item);
+              return callback.call(hiddenInput,item);
           }
       }
 
@@ -775,7 +776,7 @@
 
           // Execute the onDelete callback if defined
           if($.isFunction(callback)) {
-              callback.call(hiddenInput,token_data);
+              return callback.call(hiddenInput,token_data);
           }
       }
 
